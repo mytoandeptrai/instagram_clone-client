@@ -1,0 +1,35 @@
+.card-actions {
+  &-container {
+    width: 100%;
+  }
+  &-menu {
+    height: 40px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 20px;
+    a {
+      color: #262626;
+    }
+  }
+  &-send {
+    margin-right: auto;
+  }
+}
+
+.far,
+.fas {
+  font-size: 25px !important;
+  cursor: pointer;
+}
+
+.fa-heart,
+.fa-comment {
+  margin-right: 1.5rem !important;
+}
+
+.warning {
+  color: #262626;
+  transition: all 0.2s linear;
+}

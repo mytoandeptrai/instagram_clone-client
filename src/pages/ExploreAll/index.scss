@@ -1,0 +1,27 @@
+.explore {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  &-heading {
+    font-size: 14px;
+    font-weight: 700;
+    color: #262626;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &-users {
+    padding: 15px 20px;
+  }
+  &-loading {
+    text-align: center;
+  }
+  &-btn {
+    text-align: center;
+    margin-top: 10px;
+  }
+}

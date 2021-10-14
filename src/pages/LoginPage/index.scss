@@ -1,0 +1,232 @@
+.instagram {
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 100px auto;
+  }
+  &-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    &-continue {
+      margin-top: 5px;
+      margin-left: -15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        background-color: #fff;
+        width: 350px;
+        padding: 1.3rem 0;
+        border: 1px solid lightgrey;
+      }
+    }
+  }
+  &-login {
+    &-logo {
+      text-align: center;
+      height: 51px;
+      width: 175px;
+      margin: 12px 0 12px;
+      img {
+        max-width: 100%;
+        object-fit: cover;
+      }
+    }
+    &-div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80%;
+      height: 100%;
+    }
+  }
+  &-form {
+    margin-top: 2rem;
+    height: 100%;
+    width: 100%;
+    &-input {
+      border: 1px solid #dbdbdb;
+      width: 100%;
+      border-radius: 3px;
+      &:first-child {
+        margin-top: 10px;
+      }
+    }
+    &-label {
+      display: flex;
+      position: relative;
+      .input-login {
+        background: #fafafa;
+        border: 0;
+        flex: 1 0 auto;
+        margin: 0;
+        outline: 0;
+        overflow: hidden;
+        padding: 9px 0 7px 8px;
+        text-overflow: ellipsis;
+      }
+      .instagram-label-text {
+        color: #8e8e8e;
+        font-size: 12px;
+        height: 36px;
+        left: 8px;
+        line-height: 36px;
+        overflow: hidden;
+        pointer-events: none;
+        position: absolute;
+        transform-origin: 0 0;
+        transition: all 0.3s;
+        opacity: 0;
+      }
+    }
+    .instagram-login {
+      background-color: #0095f6;
+      color: #fff;
+      padding: 8px 30px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 14px;
+      border: 0;
+      margin-top: 5px;
+      margin-bottom: 18px;
+      letter-spacing: 1px;
+    }
+  }
+  &-apps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1.3rem 0;
+
+    &-heading {
+      display: inline-block;
+      padding: 10px;
+    }
+    &-download {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      padding: 1rem;
+      img {
+        height: 3rem;
+        width: 10rem;
+        object-fit: cover;
+        border-radius: 9px;
+        &:first-child {
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+  &-forgot {
+    font-size: 11px;
+    font-weight: 500;
+    color: #262626;
+    text-align: center;
+    display: block;
+    margin-bottom: -10px;
+  }
+}
+
+#password {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  .show {
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    opacity: 0.5;
+    font-size: 14px;
+    color: black !important;
+    font-weight: bold;
+    // opacity: 0;
+  }
+}
+.input-login-password:focus + .show {
+  position: absolute;
+  opacity: 1;
+}
+.input-login:focus::placeholder {
+  color: transparent;
+}
+.input-login:focus + .instagram-label-text,
+.input-login:not(:placeholder-shown) + .instagram-label-text {
+  transform: translateY(-10px) scale(0.83333);
+  opacity: 1;
+}
+
+button.instagram-login {
+  width: 100%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+button.instagram-login:disabled {
+  background-color: rgba(0, 149, 246, 0.3);
+}
+
+.hr-ou {
+  border: 0;
+  border-top: 1px solid #ccc;
+  overflow: visible;
+  padding: 0;
+  color: #8e8e8e;
+  text-align: center;
+  /* margin: 0 2rem; */
+}
+
+.hr-ou::after {
+  content: "OR";
+  display: inline-block;
+  position: relative;
+  top: -0.6em;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 0 1em;
+  background: white;
+}
+
+.group:nth-child(2) {
+  justify-content: center !important;
+  flex-direction: row !important;
+  margin-top: 0.5rem;
+  height: 63px;
+  color: #262626;
+  font-size: 14px;
+  font-weight: 300;
+  .not-account {
+    a {
+      font-size: 14px;
+      display: inline-block;
+      color: #0095f6;
+    }
+  }
+}
+
+.group:nth-child(2) > p {
+  margin-right: 0.2rem;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: #fafafa;
+}

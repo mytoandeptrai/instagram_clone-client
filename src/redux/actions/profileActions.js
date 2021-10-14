@@ -1,0 +1,291 @@
+import { getDataAPI, patchDataAPI } from "../../utils/fetchData";
+import { imageUpload } from "../../utils/imageUpload";
+import { AUTH_TYPES } from "../types/authTypes";
+import { deleteData } from "../types/globalTypes";
+import { NOTIFY_TYPES } from "../types/notifyTypes";
+import { PROFILE_TYPES } from "../types/profileTypes";
+import { createNewsNotify, removeNewsNotify } from "./newsActions";
+
+export const getProfileUsers = ({ id, auth }) => {
+  return async (dispatch) => {
+    dispatch({
+      type: PROFILE_TYPES.GET_ID,
+      payload: id,
+    });
+
+    try {
+      dispatch({
+        type: PROFILE_TYPES.LOADING,
+        payload: true,
+      });
+      const res = getDataAPI(`/user/${id}`, auth.token);
+
+      const res1 = getDataAPI(`/user_posts/${id}`, auth.token);
+
+      const users = await res;
+      const userPosts = await res1;
+
+      dispatch({
+        type: PROFILE_TYPES.GET_USER,
+        payload: users.data,
+      });
+
+      dispatch({
+        type: PROFILE_TYPES.GET_POSTS,
+        payload: { ...userPosts.data, _id: id, page: 2 },
+      });
+
+      dispatch({
+        type: PROFILE_TYPES.LOADING,
+        payload: false,
+      });
+    } catch (err) {
+      dispatch({
+        type: NOTIFY_TYPES.NOTIFY,
+        payload: { error: err.response.data.msg },
+      });
+    }
+  };
+};
+
+export const updateProfileUser =
+  ({ userData, avatar, auth }) =>
+  async (dispatch) => {
+    if (!userData.fullname)
+      return dispatch({
+        type: NOTIFY_TYPES.NOTIFY,
+        payload: { error: "Please add your full name" },
+      });
+    if (userData.fullname.length > 25)
+      return dispatch({
+        type: NOTIFY_TYPES.NOTIFY,
+        payload: { error: "Your full name is too long" },
+      });
+    if (userData.story.length > 200)
+      return dispatch({
+        type: NOTIFY_TYPES.NOTIFY,
+        payload: { error: "Your story is too long" },
+      });
+    try {
+      let media;
+      dispatch({
+        type: NOTIFY_TYPES.NOTIFY,
+        payload: { loading: true },
+      });
+      if (avatar) media = await imageUpload([avatar]);
+
+      const res = await patchDataAPI(
+        "user",
+        {
+          ...userData,
+          avatar: avatar ? media[0].url : auth.user.avatar,
+        },
+        auth.token
+      );
+
+      dispatch({
+        type: AUTH_TYPES.AUTH,
+        payload: {
+          ...auth,
+          user: {
+            ...auth.user,
+            ...userData,
+            avatar: avatar ? media[0].url : auth.user.avatar,
+          },
+        },
+      });
+
+      dispatch({
+        type: NOTIFY_TYPES.NOTIFY,
+        payload: { success: res.data.msg },
+      });
+    } catch (err) {
+      dispatch({
+        type: NOTIFY_TYPES.NOTIFY,
+        payload: { error: err.response.data.msg },
+      });
+    }
+  };
+
+export const changePasswordUser = ({ userData, auth }) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: PROFILE_TYPES.LOADING,
+        payload: true,
+      });
+      const res = await patchDataAPI("changePassword", userData, auth.token);
+      dispatch({
+        type: NOTIFY_TYPES.NOTIFY,
+        payload: { success: res.data.msg },
+      });
+    } catch (err) {
+      dispatch({
+        type: NOTIFY_TYPES.NOTIFY,
+        payload: { error: err.response.data.msg },
+      });
+    }
+  };
+};
+
+export const followAction = ({ users, user, auth, socket }) => {
+  return async (dispatch) => {
+    let newUser;
+
+    if (users.every((item) => item._id !== user.id)) {
+      newUser = { ...user, followers: [...user.followers, auth.user] };
+    } else {
+      users.forEach((item) => {
+        if (item._id === user._id) {
+          newUser = { ...item, followers: [...item.followers, auth.user] };
+        }
+      });
+    }
+
+    dispatch({
+      type: PROFILE_TYPES.FOLLOW,
+      payload: newUser,
+    });
+
+    dispatch({
+      type: AUTH_TYPES.AUTH,
+      payload: {
+        ...auth,
+        user: { ...auth.user, following: [...auth.user.following, newUser] },
+      },
+    });
+
+    try {
+      const res = await patchDataAPI(
+        `user/${user._id}/follow`,
+        null,
+        auth.token
+      );
+      socket.emit("follow", res.data.newUser);
+
+      //Notify
+      const msg = {
+        id: auth.user._id,
+        text: "has started to follow you.",
+        recipients: [newUser._id],
+        url: `/profile/${auth.user._id}`,
+      };
+
+      dispatch(createNewsNotify({ msg, auth, socket }));
+    } catch (err) {
+      dispatch({
+        type: NOTIFY_TYPES.NOTIFY,
+        payload: { error: err.response.data.msg },
+      });
+    }
+  };
+};
+
+export const unFollowAction = ({ users, user, auth, socket }) => {
+  return async (dispatch) => {
+    let newUser;
+
+    if (users.every((item) => item._id !== user.id)) {
+      newUser = {
+        ...user,
+        followers: deleteData(user.followers, auth.user._id),
+      };
+    } else {
+      users.forEach((item) => {
+        if (item._id === user._id) {
+          newUser = {
+            ...item,
+            followers: deleteData(item.followers, auth.user._id),
+          };
+        }
+      });
+    }
+
+    dispatch({
+      type: PROFILE_TYPES.UNFOLLOW,
+      payload: newUser,
+    });
+
+    dispatch({
+      type: AUTH_TYPES.AUTH,
+      payload: {
+        ...auth,
+        user: {
+          ...auth.user,
+          following: deleteData(auth.user.following, newUser._id),
+        },
+      },
+    });
+
+    try {
+      const res = await patchDataAPI(
+        `user/${user._id}/unfollow`,
+        null,
+        auth.token
+      );
+
+      socket.emit("unFollow", res.data.newUser);
+
+      //Notify
+      const msg = {
+        id: auth.user._id,
+        text: "has started to follow you.",
+        recipients: [newUser._id],
+        url: `/profile/${auth.user._id}`,
+      };
+
+      dispatch(removeNewsNotify({ msg, auth, socket }));
+    } catch (err) {
+      dispatch({
+        type: NOTIFY_TYPES.NOTIFY,
+        payload: { error: err.response.data.msg },
+      });
+    }
+  };
+};
+
+export const getMoreUserPosts = ({ id, page, auth }) => {
+  return async (dispatch) => {
+    try {
+      const res = await getDataAPI(
+        `user_posts/${id}?limit=${page * 9}`,
+        auth.token
+      );
+      const newData = { ...res.data, page: page + 1, _id: id };
+      dispatch({
+        type: PROFILE_TYPES.UPDATE_POST,
+        payload: newData,
+      });
+    } catch (err) {
+      dispatch({
+        type: NOTIFY_TYPES.NOTIFY,
+        payload: { error: err.response.data.msg },
+      });
+    }
+  };
+};
+
+export const getPostAuthAction = ({ id, auth }) => {
+  return async (dispatch) => {
+    try {
+      dispatch({
+        type: PROFILE_TYPES.LOADING,
+        payload: true,
+      });
+      const res = await getDataAPI(`/user_posts/${id}`, auth.token);
+      dispatch({
+        type: PROFILE_TYPES.GET_POSTS,
+        payload: { ...res.data, _id: id, page: 2 },
+      });
+      dispatch({
+        type: PROFILE_TYPES.LOADING,
+        payload: false,
+      });
+    } catch (err) {
+      dispatch({
+        type: NOTIFY_TYPES.NOTIFY,
+        payload: { error: err.response.data.msg },
+      });
+    }
+  };
+};

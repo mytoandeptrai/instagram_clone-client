@@ -1,0 +1,21 @@
+.posts-footer {
+  &-input {
+    background-color: white;
+    margin: 0 20px;
+  }
+  &-likes {
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  &-createdAt {
+    color: #999999;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 5px;
+    p {
+      color: inherit;
+    }
+  }
+}

@@ -1,0 +1,54 @@
+.user {
+  &-container {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: #fff;
+    border-radius: 5px;
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #fafafa;
+    }
+  }
+  &-container-msg {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 5px;
+    width: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &-msg {
+    background-color: none;
+  }
+  &-details {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &-profile {
+    display: flex;
+    align-items: center;
+  }
+  &-content {
+    margin-left: 10px;
+    line-height: 1.5;
+    span {
+      display: block;
+      color: #262626;
+    }
+    small {
+      color: #8e8e8e;
+    }
+  }
+}
+
+.underline:hover span {
+  text-decoration: underline;
+}

@@ -1,0 +1,36 @@
+.icons {
+  &-container {
+    opacity: 1;
+    position: relative;
+  }
+  &-menu {
+    opacity: 0.4;
+    cursor: pointer;
+    display: inline-block;
+  }
+  &-reactions {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    display: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 7px;
+    transform: translateY(10px);
+  }
+  &-list {
+    display: grid;
+    grid-template-columns: repeat(4, 35px);
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    span {
+      padding-bottom: 5px;
+    }
+  }
+
+  &-show {
+    display: block;
+  }
+}

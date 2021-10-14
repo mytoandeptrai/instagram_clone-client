@@ -1,0 +1,17 @@
+.posts {
+  width: 100%;
+  &-content {
+    background-color: white;
+    box-shadow: 0px 0px 2px #00000063;
+    margin-bottom: 25px;
+  }
+  &-loading {
+    text-align: center;
+  }
+  &-loadMore {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    opacity: 0;
+  }
+}

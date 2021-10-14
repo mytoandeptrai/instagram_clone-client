@@ -1,0 +1,37 @@
+.posts {
+  &-list {
+    max-height: calc(100% - (203px));
+    overflow-x: auto;
+    padding: 20px;
+    &-desc {
+      display: grid;
+      grid-template-columns: 0.5fr 3fr;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    &-image {
+      height: 42px;
+      width: 42px;
+      border-radius: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2px;
+      margin-right: 10px;
+    }
+    &-title {
+      display: block;
+      font-size: 14px;
+    }
+    &-author {
+      font-weight: 600;
+      color: #000;
+      font-size: inherit;
+      line-height: 1.6;
+    }
+    &-actions {
+      display: block;
+      margin: 0 -20px;
+    }
+  }
+}

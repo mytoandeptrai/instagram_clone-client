@@ -1,0 +1,38 @@
+.news {
+  display: block;
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  min-width: 200px;
+  z-index: 50;
+  border: 1px solid #eee;
+  padding: 5px 10px;
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    button {
+      border: none;
+      outline: none;
+      padding: 2px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+  }
+  &-body {
+    padding: 10px 0;
+  }
+}
+
+.text-light {
+  color: white;
+}
+
+.bg-danger {
+  background-color: red;
+}
+
+.bg-success {
+  background-color: #198754;
+}

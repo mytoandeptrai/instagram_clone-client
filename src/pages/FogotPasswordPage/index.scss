@@ -1,0 +1,117 @@
+.forgot {
+  &-container {
+    width: 100%;
+    height: 100vh;
+    margin-top: -80px;
+    background-color: #fafafa;
+  }
+  &-content {
+    max-width: 410px;
+    width: 100%;
+    padding: 0 20px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &-input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    &-logo {
+      text-align: center;
+      padding-top: 25px;
+    }
+    &-icon {
+      font-size: 70px !important;
+      display: inline-block;
+      padding: 10px;
+      border: 1px solid black;
+      border-radius: 50px;
+    }
+    &-form {
+      padding: 0 35px;
+    }
+    &-heading {
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+      color: #262626;
+      line-height: 1.5;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    &-desc {
+      display: inline-block;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 400;
+      color: #8e8e8e;
+      align-items: stretch;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    &-cfpassword {
+      margin-top: 10px;
+    }
+
+    &-btn {
+      display: block;
+      padding: 5px 10px;
+      background-color: #0095f6;
+      color: white;
+      border: none;
+      outline: none;
+      border-radius: 5px;
+      width: 100%;
+      cursor: pointer;
+      font-size: 14px;
+      margin-top: 15px;
+      font-weight: 500;
+      font-family: "Montserrat", sans-serif;
+      letter-spacing: 1px;
+      margin-bottom: 30px;
+    }
+    &-link {
+      margin-top: 10px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: "Montserrat", sans-serif;
+      display: block;
+      text-align: center;
+      color: #262626;
+    }
+  }
+  &-account {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px 0;
+    background-color: #fff;
+    border: 1px solid #dbdbbd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+    a {
+      margin-left: 5px;
+    }
+  }
+}
+
+.forgot-btn-link {
+  background-color: #fafafa;
+  color: #262626;
+  padding: 10px;
+  border-color: #dbdbdb;
+  border: 1px solid #dbdbdb;
+  margin-top: 90px;
+  margin-bottom: 0;
+}

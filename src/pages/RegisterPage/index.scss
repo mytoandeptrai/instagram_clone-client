@@ -1,0 +1,99 @@
+.instagram {
+  &-container {
+    width: 100%;
+    height: 100%;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-features {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .group {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-direction: column;
+      background-color: #fff;
+      width: 350px;
+      padding: 1.3rem 0;
+      border: 1px solid lightgrey;
+    }
+  }
+  &-register {
+    &-logo {
+      text-align: center;
+      height: 51px;
+      width: 175px;
+      margin: 12px 0 12px;
+      img {
+        max-width: 100%;
+        object-fit: cover;
+      }
+    }
+    &-heading {
+      margin: 12px 30px 20px 30px;
+      text-align: center;
+      color: #8e8e8e;
+      font-weight: 600;
+      font-size: 17px;
+    }
+    &-div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80%;
+      height: 100%;
+      .instagram-form {
+        margin-top: 0px !important;
+        &-input:not(:first-child) {
+          margin-top: 10px !important;
+        }
+      }
+    }
+    &-desc {
+      width: 80%;
+      text-align: center;
+      color: #8e8e8e;
+      font-size: 12px;
+      padding: 0 15px;
+      margin-bottom: 10px;
+      line-height: 1.6;
+      a {
+        color: inherit;
+        font-size: 12px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.line {
+  width: 80%;
+  text-align: center;
+  position: relative;
+  color: #8e8e8e;
+  font-size: 13px;
+  font-weight: 600;
+  &::after {
+    content: "";
+    width: 100%;
+    height: 0.1px;
+    background-color: #8e8e8e;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  &-text {
+    display: inline-block;
+    padding: 15px;
+    background-color: white;
+    position: relative;
+    z-index: 2;
+  }
+}

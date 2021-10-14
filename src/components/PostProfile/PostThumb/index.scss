@@ -1,0 +1,59 @@
+.post-thumb {
+  &-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    justify-content: center;
+    grid-gap: 10px;
+    overflow: hidden;
+    margin: 15px 0;
+  }
+  &-display {
+    min-width: 300px;
+    height: 300px;
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+  &-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0008;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: all 0.2s linear;
+    i {
+      color: white;
+    }
+  }
+  &-warning {
+    text-align: center;
+    color: crimson;
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+    margin-top: 20px;
+  }
+}
+
+.post-thumb-display:hover .post-thumb-menu {
+  opacity: 1;
+}

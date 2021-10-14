@@ -1,0 +1,20 @@
+.discover-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  &-container {
+    width: 100%;
+  }
+  &-loading {
+    text-align: center;
+  }
+  &-btn {
+    text-align: center;
+  }
+  &-loadMore {
+    bottom: 100px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+  }
+}

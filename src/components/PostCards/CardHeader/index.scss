@@ -1,0 +1,93 @@
+.card-header {
+  border-bottom: 0.5px solid #efefef;
+  &-content {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+  &-img {
+    height: 60px;
+    width: 60px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    margin-right: 10px;
+  }
+  &-name {
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    h6 {
+      cursor: pointer;
+      margin-bottom: 10px;
+      a {
+        font-size: 14px;
+        font-weight: 700;
+        color: black;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    small {
+      font-size: 12px;
+      font-weight: 400;
+      color: #262626;
+    }
+  }
+  &-dropdown {
+    cursor: pointer;
+  }
+  &-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    width: 100%;
+    height: 100vh;
+    overflow: auto;
+    background: #0008;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &-menu {
+    max-width: 450px;
+    width: 100%;
+    background: white;
+    margin: 30px auto;
+    border-radius: 15px;
+    padding: 5px;
+  }
+  &-items {
+    width: 100%;
+    text-align: center;
+    background: white;
+    cursor: pointer;
+    &:not(:first-child) {
+      border-top: 1px solid #dbdbdb;
+    }
+    &:hover {
+      background: #dbdbdb;
+      border-radius: 15px;
+    }
+  }
+  &-actions {
+    display: inline-block;
+    padding: 20px 20px;
+    font-size: 12px;
+    font-weight: 600;
+    width: 100%;
+  }
+  .material-icons {
+    font-size: 23px !important;
+  }
+}
+
+.red {
+  color: crimson;
+}

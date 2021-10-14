@@ -1,0 +1,71 @@
+.profile {
+  &-container {
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  &-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+    }
+  }
+  &-actions {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #eee;
+    &-posts {
+      position: relative;
+      &::before {
+        content: "\f00b";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        margin-right: 10px;
+        display: inline-block;
+      }
+    }
+    &-saved {
+      position: relative;
+      &::before {
+        content: "\f02e";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        margin-right: 10px;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.profile-actions-posts,
+.profile-actions-saved {
+  padding: 20px 0 10px 0;
+  outline: none;
+  border: none;
+  color: #8e8e8e;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  background-color: #fafafa;
+  text-transform: uppercase;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.profile-actions-saved {
+  margin-left: 60px;
+}
+
+.profile-actions-active {
+  border-top: 1px solid #000;
+  opacity: 0.8;
+  color: #000;
+}

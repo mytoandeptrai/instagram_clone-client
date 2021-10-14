@@ -1,0 +1,38 @@
+.follow {
+  &-btn {
+    cursor: pointer;
+  }
+  &-btn-user {
+    background-color: #0095f6;
+    border-color: #0095f6;
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    color: #ffffff;
+    display: inline-block;
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 26px;
+    padding: 0px 24px;
+    text-align: center;
+    cursor: pointer;
+  }
+  &-btn-suggestion {
+    color: #0095f6;
+    border: none;
+    outline: none;
+    background-color: white;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+}
+
+.unfollow {
+  background-color: red;
+  border-color: red;
+  &-sug {
+    color: crimson;
+  }
+}
